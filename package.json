@@ -1,0 +1,27 @@
+{
+    "name": "fig-ecomm",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "server": "cd server && nodemon server.js",
+      "client": "cd client && npm start",
+      "develop": "concurrently \"npm run client\"  \"npm run server\""
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ncortes04/fig-Ecomm.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/ncortes04/fig-Ecomm/issues"
+    },
+    "homepage": "https://github.com/ncortes04/fig-Ecomm#readme",
+    "dependencies": {
+      "concurrently": "^8.0.1",
+      "nodemon": "^2.0.22"
+    }
+  }
+  
