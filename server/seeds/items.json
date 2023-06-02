@@ -1,0 +1,82 @@
+[
+{
+    "brand": "Zara",
+    "name": "Buttons tweed blazer",
+    "price": 59.99,
+    "category": "mens",
+    "description": "A stylish and sophisticated tweed blazer with button details. Perfect for formal occasions.",
+    "averageRating": 0,
+    "ratingCount": 0,
+    "variations": []
+},
+{
+    "brand": "H&M",
+    "name": "Flowy striped skirt",
+    "price": 39.99,
+    "category": "mens",
+    "description": "A flowy striped skirt that adds a touch of elegance and charm to your outfit. Ideal for summer days.",
+    "averageRating": 0,
+    "ratingCount": 0,
+    "variations": []
+},
+{
+    "brand": "Uniqlo",
+    "name": "Cotton T-Shirt",
+    "price": 19.99,
+    "category": "mens",
+    "description": "A comfortable and breathable cotton t-shirt that is perfect for everyday wear. Available in various colors.",
+    "averageRating": 0,
+    "ratingCount": 0,
+    "variations": []
+},
+{
+    "brand": "Gap",
+    "name": "Slim striped pocket shirt",
+    "price": 29.99,
+    "category": "mens",
+    "description": "A slim-fit shirt with stylish striped patterns and a convenient pocket. Suitable for both casual and formal occasions.",
+    "averageRating": 0,
+    "ratingCount": 0,
+    "variations": []
+},
+{
+    "brand": "H&M",
+    "name": "Fit micro corduroy shirt",
+    "price": 34.99,
+    "category": "mens",
+    "description": "A fitted corduroy shirt made from soft and durable microfiber material. Perfect for colder seasons.",
+    "averageRating": 0,
+    "ratingCount": 0,
+    "variations": []
+},
+{
+    "brand": "Zara",
+    "name": "Tropical Kimono",
+    "price": 49.99,
+    "category": "mens",
+    "description": "A vibrant and colorful tropical kimono that adds a touch of exotic flair to your wardrobe. Great for beach vacations.",
+    "averageRating": 0,
+    "ratingCount": 0,
+    "variations": []
+},
+{
+    "brand": "Ray-Ban",
+    "name": "Contrasting sunglasses",
+    "price": 24.99,
+    "category": "mens",
+    "description": "Stylish sunglasses with contrasting frames and high-quality lenses that provide optimal UV protection. A must-have accessory for sunny days.",
+    "averageRating": 0,
+    "ratingCount": 0,
+    "variations": []
+},
+{
+    "brand": "The North Face",
+    "name": "Water resistant backpack",
+    "price": 79.99,
+    "category": "mens",
+    "description": "A durable and water-resistant backpack with ample storage space and comfortable straps. Ideal for outdoor adventures.",
+    "averageRating": 0,
+    "ratingCount": 0,
+    "variations": []
+}
+]

@@ -35,6 +35,20 @@ const itemSchema = new Schema({
   description: {
     type: String
   },
+  averageRating: {
+    type:  Number,
+    default: 0
+  },
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Reviews'
+    }
+  ],
+  ratingCount: {
+    type: Number,
+    default: 0
+  },
   variations: [variationSchema] // Array of variations
 });
 

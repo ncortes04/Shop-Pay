@@ -1,40 +1,110 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { useParams } from 'react-router-dom'
 import { getStar } from '../utils/helperFunctions'
 import likedBlank from '../assets/liked-blank.svg'
+import { getIndividual } from '../utils/apiRoutes'
 import clipboard from '../assets/clipboard.svg'
 import Review from '../comps/Reviews'
 import Showcase from '../comps/Showcase'
-const Single = () => {
-    const [quantity, setQuantity] = useState(0);
-    const colors = [
-        {name: 'red', value: '#CA1515'}, 
-        {name: 'blue', value: '#3f29f7'},
-        {name: 'brown', value:'#E4AA8B'},
-        {name: 'black', value:'#111111'},
-      ];
-      const [activeButton, setActiveButton] = useState('description');
+import { importImage } from '../utils/helperFunctions';
 
-      const handleButtonClick = (value) => {
+const Single = () => {
+const [loading, setLoading] = useState(true)
+const [singleItem, setsingleItem] = useState({});
+const [variations, setVariations] = useState(new Map());
+const [activeButton, setActiveButton] = useState('description');
+const [ selectedColor , setSelectedColor]= useState(null);
+const [selectedSize, setSelectedSize] = useState(null);
+const [quantity, setQuantity] = useState(1);
+const { id } = useParams();
+const getItems = async () => {
+    setLoading(true);
+    try {
+        const response = await getIndividual(id);
+        const data = await response.json();
+
+        for (const item of data.variations) {
+        const { color, size } = item;
+        if (!variations.has(color.code)) {
+            setVariations((prevVariations) => new Map(prevVariations.set(color.code, [size.name])));
+        } else {
+            setVariations((prevVariations) => {
+            const sizes = prevVariations.get(color.code);
+
+            if (!sizes.includes(size.name)) {
+                sizes.push(size.name);
+            }
+
+            return new Map(prevVariations.set(color.code, sizes));
+            });
+        }
+        }
+
+        setsingleItem(data);
+    } catch (e) {
+        console.log(e);
+    }
+
+    setLoading(false);
+};
+
+    useEffect(() => {
+        getItems();
+    }, [id]);
+
+
+    const handleButtonClick = (value) => {
         setActiveButton(value);
-      };
-      const sizes = ['XS', 'S', 'M', 'L', 'XL'];
-      const [selectedSize, setSelectedSize] = useState('');
+    };
+    const sizes = ['XS', 'S', 'M', 'L', 'XL'];
     
-      const handleSizeSelect = (size) => {
+    const handleSizeSelect = (size) => {
         setSelectedSize(size);
-      };
+    };
     const handleDecrement = () => {
-      if (quantity > 0) {
+    if (quantity > 1) {
         setQuantity(quantity - 1);
-      }
+    }
     };
-  
+
     const handleIncrement = () => {
-      setQuantity(quantity + 1);
+    setQuantity(quantity + 1);
     };
+    const handleAddToCart = () => {
+        if(!selectedColor || !selectedSize){
+            return
+        }
+        // Create a new cart item object
+        const cartItem = {
+          rating: singleItem.averageRating,
+          name: singleItem.name,
+          selectedColor,
+          selectedSize,
+          quantity,
+          // Add any other relevant item information here
+        };
+    
+        // Get the existing cart items from local storage
+        const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    
+        // Add the new cart item to the existing cart items array
+        existingCartItems.push(cartItem);
+    
+        // Store the updated cart items back in local storage
+        localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+    
+        // Reset the selected item state values
+        setSelectedColor(null);
+        setSelectedSize(null);
+        setQuantity(1);
+      };
   return (
     <div className='main-div '>
-        <div className='single-image-container d-flex gap-3'>
+         {loading ? (
+        <p>Loading...</p>
+        ) : (
+            <>
+                    <div className='single-image-container d-flex gap-3'>
             <div style={{overflow:'hidden'}} className='d-flex gap-3 align-items-center'>
                 <div className='d-flex flex-column gap-3 '>
                     <img src="" alt="" className="secondary-single-img" />
@@ -42,22 +112,22 @@ const Single = () => {
                     <img src="" alt="" className="secondary-single-img" />
                     <img src="" alt="" className="secondary-single-img" />
                 </div>
-                <img src=''  alt='' className='single-image'></img>
+                <img src={importImage(singleItem.name)}  alt='' className='single-image'></img>
             </div>
             <div className='d-flex shorflex flex-column align-items-start gap-3'>
                 <div className='d-flex flex-column text-start'>
-                    <h2 className='header-small-bold m-0'>CARD.NAME</h2>
-                    <p className='text-secondary m-0'> CARD.BRAND</p>
+                    <h2 className='header-small-bold m-0'>{singleItem.name}</h2>
+                    <p className='text-secondary m-0'>{singleItem.brand}</p>
                 </div>
                 <div className='d-flex align-items-center justify-content-center gap-2'>
                     <span>
-                        {getStar(4)} 
+                        {getStar(singleItem.averageRating)} 
                     </span>
-                    <p className='text-secondary m-0'>(review.count)</p>
+                    <p className='text-secondary m-0'>{singleItem.ratingCount}</p>
                 </div>
                 <p className='header-small-bold text-red'>$100.00</p>
                 <div className='text-start'>
-                <p className='text-normal'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur beatae deserunt corporis numquam, quis blanditiis nesciunt quisquam maxime, nobis dolores sequi ipsum iusto veniam pariatur in nihil sunt distinctio totam.</p>
+                <p className='text-normal'>{singleItem.description}</p>
                 </div>
                 <div className='d-flex bb-grey wd-100 gap-4 pb-4'>
                     <p className="text-medium-bold m-0 align-self-center ">Quantity:</p>
@@ -66,7 +136,14 @@ const Single = () => {
                         <p className='m-0'>{quantity}</p>
                         <button className='unset' onClick={handleIncrement}>+</button>
                     </div>
-                    <buton className='add-cart-btn'><img src={clipboard}></img>ADD TO CART</buton>
+                    <buton 
+                    onClick={() => handleAddToCart()}
+                    className='add-cart-btn '
+                    disabled={!selectedColor || !selectedSize}
+                    >
+                        <img src={clipboard}></img>
+                        ADD TO CART
+                    </buton>
                     <buton className='icon'><img src={likedBlank}></img></buton>
                 </div>
                 <div className='pt-3 d-flex gap-3'>
@@ -76,29 +153,39 @@ const Single = () => {
                          <p className='text-medium-bold m-0'>Available Colors:</p>
                          <p className='text-medium-bold m-0'>Promotions:</p>
                     </div>
-                    <div className='d-flex flex-column text-start gap-3'>
-                        <div className="d-flex gap-2">
-                                {colors.map((color, index) => (
+                    <div className='d-flex flex-column text-start gap-3'>    
+                         <p className='text-secondary m-0'>{singleItem.variations ? "In Stock" : "Out of Stock"}</p>
+                         <div className="size-buttons">
+                            {sizes.map((size, index) => {
+                                const isAvailable = variations.get(selectedColor)?.includes(size);
+                                const className = `${selectedSize === size ? 'size-button-selected' : 'size-button'} ${isAvailable ? '' : 'unavailable'}`;
+
+                                return (
                                 <button
                                     key={index}
-                                    className="color-button"
-                                    style={{ backgroundColor: color.value }}
+                                    className={className}
+                                    onClick={() => handleSizeSelect(size)}
+                                    disabled={!isAvailable}
                                 >
+                                    {size}
                                 </button>
-                                ))}
-                         </div>       
-                         <p className='text-secondary m-0'>In Stock</p>
-                         <div className="size-buttons">
-                            {sizes.map((size, index) => (
-                            <button
-                                key={index}
-                                className={`size-button ${selectedSize === size ? 'text-red' : ''}`}
-                                onClick={() => handleSizeSelect(size)}
-                            >
-                                {size}
-                            </button>
-                            ))}
-                        </div>
+                                );
+                            })}
+                            </div>
+                            <div className="d-flex gap-2  align-items-center">
+                                {Array.from(variations.keys()).map((color, index) => {
+                                    return(
+                                        <button
+                                        key={index}
+                                        className={selectedColor == color ? "color-button-selected" : "color-button"}
+                                        style={{ backgroundColor: color }}
+                                        onClick={() => {setSelectedColor(color) 
+                                                        setSelectedSize(null)}}
+                                    >
+                                    </button>
+                                    )
+                                })}
+                         </div>   
                         <p className='text-secondary'>item.promo</p>
                     </div>
                 </div>
@@ -138,8 +225,11 @@ const Single = () => {
         : <Review/>}
         <div>
             <h3 className='text-large-bold m-4'>RELATED PRODUCTS</h3>
-            <Showcase/>
+            <Showcase category={singleItem.category._id}/>
         </div>
+        </>
+        )}
+
     </div>
   )
 }

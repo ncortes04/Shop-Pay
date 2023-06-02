@@ -3,6 +3,7 @@ const Item = require('../models/items');
 const { ObjectId } = require('mongoose').Types;
 const Color = require('../models/colors');
 const Size = require('../models/sizes');
+const Reviews = require('../models/Review');
 
 module.exports = {
     async createItem({ body, user = null, params}, res) {
@@ -86,41 +87,60 @@ async servePosts(req, res) {
             path: 'category',
             select: 'name'
         })
-        .select('-variations'); // Exclude the 'variations' field from the response
+        .select('-variations'); 
     
-        res.json(items);
+        res.status(200).json(items);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Something went wrong' });
     }
     },
     
-
-  async getIndividualItem(req, res) {
-    try {
-      const item = await Item.findById(req.params.id)
-        .populate({
-          path: 'category',
-          select: 'name'
-        })
-        .populate({
-          path: 'variations',
-          populate: [
-            { path: 'color', model: Color, select: 'name' },
-            { path: 'size', model: Size, select: 'name' }
-          ]
-        });
-  
-      if (!item) {
-        return res.status(404).json({ message: 'Item not found' });
+    async getByCategory(req, res) {
+      const { category } = req.body
+      try {
+        const items = await Item.find({ category: category })
+          .populate({
+            path: 'category',
+            select: 'name',
+          })
+          .select('-variations')
+          .limit(4);
+        if (items.length === 0) {
+          return res.status(404).json({ message: 'No items found for the category' });
+        }
+    
+        res.status(200).json(items);
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Something went wrong' });
       }
-  
-      res.status(200).json(item);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Something went wrong' });
-    }
-  },
+    },
+    async getIndividualItem(req, res) {
+      try {
+        const item = await Item.findById(req.params.id)
+          .populate({
+            path: 'category',
+            select: 'name'
+          })
+          .populate({
+            path: 'variations',
+            populate: [
+              { path: 'color', model: Color },
+              { path: 'size', model: Size, select: 'name' }
+            ]
+          })
+          item.reviews = await Reviews.find({ item_id: req.params.id }).populate('user_id');
+        if (!item) {
+          return res.status(404).json({ message: 'Item not found' });
+        }
+    
+        res.status(200).json(item);
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Something went wrong' });
+      }
+    },
   
 
   async getInventoryCount(req, res) {

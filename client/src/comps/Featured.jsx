@@ -1,8 +1,8 @@
 import React from 'react'
 import { getStar } from '../utils/helperFunctions'
- const test = [1 , 2, 3]
+const test = [1 , 2, 3]
 const Featured = () => {
-  return (
+return (
     <div className='d-flex justify-content-around pt-5'>
         <div className="d-flex flex-column align-start gap-4">
             <p className='text-large-bold bb-red fit-content'>HOT TREND</p>
@@ -17,13 +17,13 @@ const Featured = () => {
                             </div>
                             <p className='text-large-bold'>$90</p>
                         </div>
-                   </div>
+                    </div>
                 )
             })}
         </div>
         <div className="d-flex flex-column align-start gap-4">
             <p className='text-large-bold bb-red fit-content'>BEST SELLERS</p>
-         {test && test.map(item => {
+        {test && test.map(item => {
                 return (
                     <div className="d-flex gap-3">
                         <img className='small-img'></img>
@@ -56,7 +56,7 @@ const Featured = () => {
             })}
         </div>
     </div>
-  )
+)
 }
 
 export default Featured

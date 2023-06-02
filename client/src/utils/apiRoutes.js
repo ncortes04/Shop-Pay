@@ -62,8 +62,16 @@ export const getCategories = async () => {
   },
 })
 }
+export const getbyCategory = async (category) => {
+  return await fetch(`/api/getbycategory`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({category})
+})
+}
 export const getIndividual = async (id) => {
-  return await fetch(`/api/single${id}`, {
+  return await fetch(`/api/single/${id}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json',
   },

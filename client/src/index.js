@@ -1,13 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import userReducers from './features/user'
+import postReducers from './features/posts'
 import App from './App';
+import thunk from 'redux-thunk';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const rootReducer = {
+  user: userReducers,
+  posts: postReducers,
+};
+
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: [...getDefaultMiddleware(), thunk],
+});
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>,
   </React.StrictMode>
 );
 

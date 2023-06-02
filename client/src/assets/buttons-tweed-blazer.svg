@@ -1,8 +1,6 @@
 <svg width="263" height="360" viewBox="0 0 263 360" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g clip-path="url(#clip0_1_779)">
 <rect width="262.5" height="360" fill="url(#pattern0)"/>
-<rect width="47.19" height="22" transform="translate(10 10)" fill="#36A300"/>
-<path d="M26.484 16.6V25H25.5L20.46 18.736V25H19.26V16.6H20.244L25.284 22.864V16.6H26.484ZM35.0943 23.956V25H28.9983V16.6H34.9263V17.644H30.1983V20.224H34.4103V21.244H30.1983V23.956H35.0943ZM48.7882 16.6L45.9802 25H44.7202L42.4282 18.292L40.1362 25H38.8522L36.0442 16.6H37.2802L39.5482 23.428L41.9122 16.6H43.0162L45.3322 23.464L47.6482 16.6H48.7882Z" fill="white"/>
 </g>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">

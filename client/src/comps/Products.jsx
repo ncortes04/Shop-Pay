@@ -1,13 +1,22 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux'
+import { getStar } from '../utils/helperFunctions';
 import { importImage } from '../utils/helperFunctions';
 const Products = () => {
-    const [activeButton, setActiveButton] = useState('');
 
-    const handleClick = (button) => {
-      setActiveButton(button);
-    };
-    const test = [1, 2, 3, 4, 5, 6, 7, 8]
-  return (
+const navigate = useNavigate()
+const [activeButton, setActiveButton] = useState('');
+
+const handleClick = (button) => {
+    setActiveButton(button);
+};
+var handlePageRelocate = function(itemId, index) {
+    navigate(`/single/${itemId}`);
+}
+
+const posts = useSelector((state) => state.posts.unfilteredData);
+return (
     <div className='p-5'>
         <div className='d-flex shorflex'>
             <div style={{width: '100%'}}className='d-flex justify-content-between '>
@@ -53,15 +62,17 @@ const Products = () => {
             </div> 
         </div>
         <div className='d-flex gap-2 row'>
-            {test && test.map(card => {
+            {posts && posts.map((card, index) => {
                 return (
-                    <div className='product-card'>
-                        <img src={importImage('button-tweed-blazer')} className='card-image'></img>
+                    <div 
+                    onClick={() => {handlePageRelocate(card._id, index)}}
+                    className='product-card pointer'>
+                        <img src={importImage(card.name)} className='card-image'></img>
                         <div className='m-2'>
-                            <p className='m-0'>card.name</p>
-                            <span>card.rating</span>
+                            <p className='m-0'>{card.name}</p>
+                            <span>{getStar(card.averageRating)}</span>
                         </div>
-                        <p>card.price</p>
+                        <p>{card.price}</p>
                     </div>
                 )
             })}
@@ -70,7 +81,7 @@ const Products = () => {
 
 
     </div>
-  )
+)
 }
 
 export default Products

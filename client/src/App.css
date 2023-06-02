@@ -144,9 +144,23 @@
   color: white;
   font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
+}
+.add-cart-btn[disabled] {
+  cursor:default;
+  background-color: #ca151583;
 }
 .bb-grey {
   border-bottom: 1px solid #EBEBEB;
+}
+.pointer {
+  cursor: pointer;
+}
+.color-button-selected {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  border: 1px solid rgb(69, 68, 68);
 }
 .color-button {
   border-radius: 50%;
@@ -158,6 +172,12 @@
   background: none;
   border: none;
   margin: 0;
+}
+.size-button-selected {
+  background: none;
+  border: none;
+  margin: 0;
+  font-weight: 700;
 }
 .icon {
   width: 50px;
@@ -220,14 +240,42 @@
   height: 90px;
 }
 .card-image {
-  background-color: blue;
   flex: 1;
+}
+.profile-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+  border: 1px solid 
+}
+.review-comment {
+  background-color: #f3f3f368;
+  border-radius: 10px;
+  padding: 20px;
+}
+.review-add-comment {
+  background-color: #f3f3f368;
+  border-radius: 10px;
+  padding: 20px;
+}
+.review-add-comment input, .review-add-comment textarea {
+  border-radius: 10px;
+  border: 1px solid #E1E1E1;
+  padding: 10px;
 }
 .bb-red {
   border-bottom: 2px solid #CA1515;
 }
 .text-small {
   font-size: 14px;
+}
+.unavailable {
+  color: rgba(128, 128, 128, 0.615);
+  text-decoration: line-through;
 }
 .text-bold {
   font-weight: 500;
