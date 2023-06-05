@@ -14,6 +14,10 @@
 .single-image {
   width: 410px;
 }
+.nav-container {
+  box-shadow: 0 0px 20px 1px rgba(0, 0, 0, 0.088);
+  margin-bottom: 20px;
+}
 .secondary-single-img {
   width: 120px;
   height: 162px;
@@ -27,13 +31,17 @@
   background:#FAE3D9;
 }
 .header-pink {
- background-color:  #FEDBE5;
+background-color:  #FEDBE5;
 }
 .header-green {
-  background-color: #c3e6ca;
+  background: url('../src/assets/mens-fashion.svg');
+  background-size: cover;
+  background-position: center;
 }
 .header-purple {
-  background-color: #e5b2ea;
+  background: url('../src/assets/kids-fashion.svg');
+  background-size: cover;
+  background-position: center;
 }
 .header-blue {
   background-color: #CEE2F5;
@@ -52,6 +60,15 @@
   padding: 10px 20px 10px 20px;
   border: none;
   font-weight: 600;
+}
+.z-0 {
+  z-index: 0;
+}
+.z-1 {
+  z-index: 1;
+}
+.z-2 {
+  z-index: 2;
 }
 .cart-total {
   background-color: #f5f5f5;
@@ -236,9 +253,14 @@
   border: 1px;
 }
 .small-img {
-  background-color: blue;
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
+}
+.header-second-img {
+  position: absolute;
+  right: 0;
+  bottom: 50%;
+  transform: translate(0, 50%);
 }
 .card-image {
   flex: 1;

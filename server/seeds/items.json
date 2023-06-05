@@ -17,6 +17,7 @@
     "description": "A flowy striped skirt that adds a touch of elegance and charm to your outfit. Ideal for summer days.",
     "averageRating": 0,
     "ratingCount": 0,
+    "featured": true,
     "variations": []
 },
 {
@@ -37,6 +38,7 @@
     "description": "A slim-fit shirt with stylish striped patterns and a convenient pocket. Suitable for both casual and formal occasions.",
     "averageRating": 0,
     "ratingCount": 0,
+    "featured": true,
     "variations": []
 },
 {
@@ -57,6 +59,7 @@
     "description": "A vibrant and colorful tropical kimono that adds a touch of exotic flair to your wardrobe. Great for beach vacations.",
     "averageRating": 0,
     "ratingCount": 0,
+    "featured": true,
     "variations": []
 },
 {

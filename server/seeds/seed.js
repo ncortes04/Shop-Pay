@@ -74,19 +74,16 @@ const processPurchaseData = async (purchaseData) => {
         });
 
         // Increment the purchase count for the item
-        await Items.findByIdAndUpdate(
-          item._id,
-          { $inc: { purchaseCount: purchaseItem.quantity } },
-          { new: true }
-        );
+        item.purchaseCount += purchaseItem.quantity;
+        await item.save();
       }
 
-      const processedPurchase = {
+      const processedPurchase = new Purchases({
         user: user._id,
         items,
         totalPrice: purchase.totalPrice,
         purchaseDate: purchase.purchaseDate
-      };
+      });
 
       processedData.push(processedPurchase);
     }
@@ -96,6 +93,7 @@ const processPurchaseData = async (purchaseData) => {
     console.log(error);
   }
 };
+
 
 const processReviewData = async () => {
   try {

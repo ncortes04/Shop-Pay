@@ -30,11 +30,19 @@ const itemSchema = new Schema({
       ref: 'Reviews'
     }
   ],
+  featured: {
+    type: Boolean,
+    default: false
+  },
   ratingCount: {
     type: Number,
     default: 0
   },
-  variations: [Variation.schema]
+  variations: [Variation.schema],
+  purchaseCount: {
+    type: Number,
+    default: 0
+  }
 });
 
 const Item = model('Item', itemSchema);

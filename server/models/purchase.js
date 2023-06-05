@@ -29,6 +29,23 @@ const purchaseSchema = new Schema({
   }
 });
 
+purchaseSchema.pre('save', async function (next) {
+  try {
+    const itemIds = this.items.map((item) => item.item);
+    const itemsToUpdate = await model('Item').find({ _id: { $in: itemIds } });
+    itemsToUpdate.forEach((itemToUpdate) => {
+      const purchaseItem = this.items.find((item) => item.item.toString() === itemToUpdate._id.toString());
+      if (purchaseItem) {
+        itemToUpdate.purchaseCount += purchaseItem.quantity;
+      }
+    });
+    await Promise.all(itemsToUpdate.map((itemToUpdate) => itemToUpdate.save()));
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
 const Purchase = model('Purchase', purchaseSchema);
 
 module.exports = Purchase;

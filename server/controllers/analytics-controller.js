@@ -4,9 +4,9 @@ module.exports = {
   async getTopTrendingItems(req, res) {
     try {
       const topTrendingItems = await Item.find()
-        .sort({ purchaseCount: -1 }) // Sort by purchaseCount in descending order
+        .sort({ purchaseCount: -1, averageRating: -1 }) // Sort by purchaseCount and averageRating in descending order
         .limit(3);
-
+  
       res.status(200).json(topTrendingItems);
     } catch (err) {
       console.error(err);

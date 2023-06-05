@@ -76,8 +76,10 @@ const getItems = async () => {
         }
         // Create a new cart item object
         const cartItem = {
+          _id: singleItem._id,
           rating: singleItem.averageRating,
           name: singleItem.name,
+          price: singleItem.price,
           selectedColor,
           selectedSize,
           quantity,
