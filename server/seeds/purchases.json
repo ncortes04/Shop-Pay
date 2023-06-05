@@ -1,0 +1,70 @@
+[
+    {
+      "user": 1,
+      "items": [
+        {
+          "item": 1,
+          "quantity": 2
+        },
+        {
+          "item": 2,
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 50.0,
+      "purchaseDate": "2023-05-01T09:00:00.000Z"
+    },
+    {
+      "user": 2,
+      "items": [
+        {
+          "item": 3,
+          "quantity": 3
+        }
+      ],
+      "totalPrice": 100.0,
+      "purchaseDate": "2023-05-02T10:30:00.000Z"
+    },
+    {
+      "user": 3,
+      "items": [
+        {
+          "item": 4,
+          "quantity": 1
+        },
+        {
+          "item": 5,
+          "quantity": 2
+        }
+      ],
+      "totalPrice": 75.0,
+      "purchaseDate": "2023-05-03T15:45:00.000Z"
+    },
+    {
+      "user": 4,
+      "items": [
+        {
+          "item": 6,
+          "quantity": 1
+        },
+        {
+          "item": 7,
+          "quantity": 3
+        }
+      ],
+      "totalPrice": 120.0,
+      "purchaseDate": "2023-05-04T13:15:00.000Z"
+    },
+    {
+      "user": 5,
+      "items": [
+        {
+          "item": 8,
+          "quantity": 2
+        }
+      ],
+      "totalPrice": 45.0,
+      "purchaseDate": "2023-05-05T11:30:00.000Z"
+    }
+  ]
+  

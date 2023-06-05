@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getStar } from '../utils/helperFunctions';
 
 const Checkout = () => {
@@ -10,6 +10,15 @@ const Checkout = () => {
   ];
 
   const [quantities, setQuantities] = useState({});
+  const [cartItems, setCartItems] = useState([]);
+  console.log(cartItems)
+  useEffect(() => {
+    const cartItemsFromStorage = localStorage.getItem('cartItems');
+    if (cartItemsFromStorage) {
+      setCartItems(JSON.parse(cartItemsFromStorage));
+    }
+  }, []);
+
 
   const handleDecrement = (itemId) => {
     setQuantities((prevQuantities) => ({
@@ -24,7 +33,8 @@ const Checkout = () => {
       [itemId]: (prevQuantities[itemId] || 0) + 1
     }));
   };
-  const subtotal = test.reduce((acc, item) => {
+
+  const subtotal = cartItems.reduce((acc, item) => {
     const { id, price } = item;
     const quantity = quantities[id] || 0;
     return acc + price * quantity;

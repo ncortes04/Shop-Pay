@@ -222,7 +222,7 @@ const getItems = async () => {
          </div>
         : activeButton === 'specifications' ? 
             <div></div>
-        : <Review/>}
+        : <Review reviews={singleItem.reviews}/>}
         <div>
             <h3 className='text-large-bold m-4'>RELATED PRODUCTS</h3>
             <Showcase category={singleItem.category._id}/>

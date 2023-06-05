@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main';
 import Single from './pages/Single';
 import Checkout from './pages/Checkout';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/' element={<Main/>}></Route>
           <Route path='/single/:id' element={<Single/>}/>
           <Route path='/checkout' element={<Checkout/>}/>
+          <Route path='/register' element={<Login/>}/>
         </Routes>
         <Footer/>
       </div>

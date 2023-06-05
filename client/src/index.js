@@ -5,6 +5,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import userReducers from './features/user'
 import postReducers from './features/posts'
+import analyticsReducers from './features/analytics'
 import App from './App';
 import thunk from 'redux-thunk';
 import reportWebVitals from './reportWebVitals';
@@ -14,6 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const rootReducer = {
   user: userReducers,
   posts: postReducers,
+  analytics: analyticsReducers,
 };
 
 const store = configureStore({

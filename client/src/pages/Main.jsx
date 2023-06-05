@@ -7,10 +7,15 @@ import DiscountBanner from '../comps/DiscountBanner'
 import FooterAssets from '../comps/FooterAssets'
 import { useDispatch } from 'react-redux'
 import { fetchPosts } from '../features/posts'
+import { fetchAnalyticsData } from '../features/analytics'
+import { useSelector } from 'react-redux'
+import { fetchUser } from '../features/user'
 const Main = () => {
   const dispatch = useDispatch();
   useEffect(() => {
       dispatch(fetchPosts());
+      dispatch(fetchUser())
+      dispatch(fetchAnalyticsData())
   }, []);
   return (
     <div className='main-div'>

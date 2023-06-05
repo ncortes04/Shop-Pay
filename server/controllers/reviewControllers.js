@@ -4,7 +4,6 @@ const User = require('..//models/users')
 
 
 module.exports = {
-// Create a new review for a car /reviews
 async createReview({ user = null, body }, res) {
   try {
     const { item_id, rating, comment, header } = body;
@@ -49,12 +48,9 @@ async deleteReview({user = null, body}, res){
     res.status(500).json({ error: 'Failed to delete review' });
   }
 },
-// Get all reviews for a car '/reviews/:carId'
 async getAllReviews(req, res) {
   try {
-    const reviews = await Reviews.find({
-      item_id: req.params.item_id,
-    }).populate({ path: 'user_id', select: 'id username' });
+    const reviews = await Reviews.find({}).populate({ path: 'user_id', select: 'username' });
 
     res.json({ reviews });
   } catch (error) {

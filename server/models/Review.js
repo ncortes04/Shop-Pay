@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Items = require('./items');
+const Items = require('./items'); 
+const User = require('./users')
 
 const reviewSchema = new mongoose.Schema({
   header: {
@@ -35,7 +36,9 @@ reviewSchema.post('save', async function (doc) {
       { $match: { item_id: doc.item_id } },
       { $group: { _id: null, averageRating: { $avg: '$rating' } } },
     ]);
+
     await Items.findByIdAndUpdate(doc.item_id, {
+      $push: { reviews: doc._id }, // Add the new review to the reviews array
       averageRating: averageRating[0].averageRating,
       ratingCount: numReviews,
     });
@@ -43,6 +46,7 @@ reviewSchema.post('save', async function (doc) {
     console.error(error);
   }
 });
+
 
 const Reviews = mongoose.model('Reviews', reviewSchema);
 

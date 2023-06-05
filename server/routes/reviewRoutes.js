@@ -3,9 +3,10 @@ const {authMiddleware} = require('../utils/AUTH')
 
 const {
 createReview,
-deleteReview
+deleteReview,
+getAllReviews
 } = require('../controllers/reviewControllers');
 
-router.route('/review').post(authMiddleware, createReview).delete(authMiddleware , deleteReview)
+router.route('/review').post(authMiddleware, createReview).delete(authMiddleware , deleteReview).get(getAllReviews)
 
 module.exports = router

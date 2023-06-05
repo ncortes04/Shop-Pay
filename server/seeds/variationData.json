@@ -1,0 +1,75 @@
+[
+    {
+      "item": 1,
+      "color": 1,
+      "size": 1,
+      "inventory": 10
+    },
+    {
+        "item": 1,
+        "color": 2,
+        "size": 2,
+        "inventory": 10
+    },
+    {
+        "item": 1,
+        "color": 3,
+        "size": 1,
+        "inventory": 10
+    },
+    {
+      "item": 2,
+      "color": 2,
+      "size": 2,
+      "inventory": 5
+    },
+    {
+      "item": 3,
+      "color": 3,
+      "size": 3,
+      "inventory": 3
+    },
+    {
+      "item": 4,
+      "color": 4,
+      "size": 1,
+      "inventory": 8
+    },
+    {
+      "item": 5,
+      "color": 5,
+      "size": 2,
+      "inventory": 12
+    },
+    {
+      "item": 3,
+      "color": 3,
+      "size": 2,
+      "inventory": 6
+    },
+    {
+      "item": 1,
+      "color": 1,
+      "size": 3,
+      "inventory": 4
+    },
+    {
+      "item": 2,
+      "color": 2,
+      "size": 1,
+      "inventory": 7
+    },
+    {
+      "item": 4,
+      "color": 4,
+      "size": 3,
+      "inventory": 2
+    },
+    {
+      "item": 4,
+      "color": 5,
+      "size": 1,
+      "inventory": 9
+    }
+  ]
+  

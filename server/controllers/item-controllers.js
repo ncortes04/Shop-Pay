@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const User = require('../models/users');
 const Item = require('../models/items');
 const { ObjectId } = require('mongoose').Types;
 const Color = require('../models/colors');
@@ -6,34 +6,36 @@ const Size = require('../models/sizes');
 const Reviews = require('../models/Review');
 
 module.exports = {
-    async createItem({ body, user = null, params}, res) {
-        try {
-      
-          const foundUser = await User.findOne({
-            _id: user._id,
-            role: 'admin'
-          });
-      
-          if (!foundUser) {
-            return res.status(403).json({ message: 'Access denied. Admin role required.' });
-          }
-      
-          const newItem = new Item({
-            brand: body.brand,
-            name: body.name,
-            price: body.price,
-            category: body.category,
-            description: body.description,
-          });
-      
-          await newItem.save();
-      
-          res.status(200).json({ message: 'Success' });
-        } catch (err) {
-          console.error(err.message);
-          res.status(500).json({ message: 'Something went wrong' });
-        }
-      },
+  async createItem({ body, user = null, params }, res) {
+    try {
+      const foundUser = await User.findOne({
+        _id: user._id,
+        role: 'admin'
+      });
+
+      if (!foundUser) {
+        return res.status(403).json({ message: 'Access denied. Admin role required.' });
+      }
+
+      const newItem = new Item({
+        brand: body.brand,
+        name: body.name,
+        price: body.price,
+        category: body.category,
+        description: body.description,
+        hotTrendScore: 0,
+        bestSellerRank: 0,
+        featured: false
+      });
+
+      await newItem.save();
+
+      res.status(200).json({ message: 'Success' });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).json({ message: 'Something went wrong' });
+    }
+  },
 
     async addVariation({ body, user = null, params }, res) {
     try {
@@ -116,6 +118,7 @@ async servePosts(req, res) {
         res.status(500).json({ message: 'Something went wrong' });
       }
     },
+
     async getIndividualItem(req, res) {
       try {
         const item = await Item.findById(req.params.id)
@@ -130,8 +133,12 @@ async servePosts(req, res) {
               { path: 'size', model: Size, select: 'name' }
             ]
           })
-          item.reviews = await Reviews.find({ item_id: req.params.id }).populate('user_id');
-        if (!item) {
+          item.reviews = await Reviews.find({ item_id: req.params.id })
+          .populate({
+            path: 'user_id',
+            select: 'username'
+          });
+          if (!item) {
           return res.status(404).json({ message: 'Item not found' });
         }
     

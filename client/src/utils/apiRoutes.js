@@ -77,3 +77,67 @@ export const getIndividual = async (id) => {
   },
 });
 }
+export const addReview = async (id, comment, rating, header) => {
+  return await fetch(`/api/review`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json',
+      authorization: `Bearer ${authService.getToken()}`,
+    },
+    body: JSON.stringify({comment, item_id: id, rating, header})
+  });
+}
+export const getBestSellers = async () => {
+  try {
+    const response = await fetch('/api/bestsellers', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getFeaturedItems = async () => {
+  try {
+    const response = await fetch('/api/featured', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getHotTrendingItems = async () => {
+  try {
+    const response = await fetch('/api/hottrending', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllAnalytics = async () => {
+  try {
+    const response = await fetch('/api/allanalytics', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};

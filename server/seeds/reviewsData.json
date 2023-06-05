@@ -1,0 +1,38 @@
+[
+    {
+      "header": "Great product!",
+      "rating": 5,
+      "comment": "I absolutely love this item! It has exceeded all my expectations. The quality is top-notch, and it works flawlessly. I couldn't be happier with my purchase. The design is sleek and modern, and it adds a touch of elegance to my space. The functionality is impressive, and it has made my life so much easier. I highly recommend this item to anyone in need of such a product. It's definitely worth every penny.",
+      "user_id": 1,
+      "item_id": 1
+    },
+    {
+      "header": "Good quality",
+      "rating": 4,
+      "comment": "The item is impressively well-made and built to last. It feels solid and durable in my hands. I appreciate the attention to detail and craftsmanship. The materials used are of high quality, and it shows. The item has a premium look and feel. I've been using it for a while now, and it hasn't shown any signs of wear or tear. I'm confident that it will continue to serve me well for years to come.",
+      "user_id": 2,
+      "item_id": 1
+    },
+    {
+      "header": "Disappointed",
+      "rating": 2,
+      "comment": "Unfortunately, the item did not meet my expectations. The quality is subpar, and it feels cheaply made. The materials used are flimsy and prone to breaking. I expected better durability for the price I paid. The item also lacks some key features that I was hoping for. It falls short in terms of functionality and performance. Overall, I'm quite disappointed with my purchase, and I wouldn't recommend it to others.",
+      "user_id": 3,
+      "item_id": 2
+    },
+    {
+      "header": "Highly recommended",
+      "rating": 5,
+      "comment": "I can't say enough good things about this item! It has completely exceeded my expectations. The quality, functionality, and design are all top-notch. The item feels premium and well-crafted. It has all the features I was looking for and more. The performance is exceptional, and it has made a noticeable difference in my daily life. I would highly recommend this item to anyone in need of such a product. You won't be disappointed!",
+      "user_id": 3,
+      "item_id": 2
+    },
+    {
+      "header": "Average",
+      "rating": 3,
+      "comment": "The item is decent and gets the job done, but it doesn't stand out in any particular way. It's just an average product with no outstanding features. The quality is satisfactory, but it doesn't feel exceptional. The item is functional and serves its purpose adequately. However, there are other similar products on the market that offer better value for the money. If you're looking for something basic and don't have high expectations, this item will suffice.",
+      "user_id": 2,
+      "item_id": 3
+    }
+  ]
+  
