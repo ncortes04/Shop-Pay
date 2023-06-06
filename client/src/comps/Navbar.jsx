@@ -1,10 +1,11 @@
 import React from 'react'
+import logo from '../assets/logo.svg'
 
 const Navbar = () => {
   return (
     <div className='nav-container d-flex align-items-center'>
         <div className='d-flex flex-grow-1 justify-content-between align-items-center p-4'>
-            <div >Logo</div>
+            <img src={logo}></img>
             <div className='d-flex gap-4 align-items-center'>
                 <p className="text-bold m-0">HOME</p>
                 <p className="text-bold m-0">WOMEN'S</p>

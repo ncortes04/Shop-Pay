@@ -19,7 +19,7 @@ const posts = useSelector((state) => state.posts.unfilteredData);
 return (
     <div className='p-5'>
         <div className='d-flex shorflex'>
-            <div style={{width: '100%'}}className='d-flex justify-content-between '>
+            <div style={{width: '100%'}}className='d-flex justify-content-between m-2'>
                 <h3 className='bb-red'>NEW PRODUCTS</h3>
                 <div className='d-flex gap-4'>
                     <button

@@ -7,6 +7,7 @@ import cirrus from '../assets/cirrus.svg'
 import facebook from '../assets/facebook.svg'
 import twitter from '../assets/twitter.svg'
 import love from '../assets/love.svg'
+import logo from '../assets/logo.svg'
 import youtube from '../assets/youtube.svg'
 import instagram from '../assets/instagram.svg'
 import pintrest from '../assets/pintrest.svg'
@@ -17,7 +18,7 @@ const Footer = () => {
     <div className='main-div'>
          <div className='d-flex mt-5'>
             <div className=" footer-payments d-flex flex-column gap-3 shorflex text-start">
-                <p>Logo</p>
+                <img src={logo} className='fit-c'></img>
                 <p className='text-secondary'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum perferendis quas sapiente esse, aperiam itaque, quod aspernatur veniam, quaerat quibusdam quos nihil ex temporibus molestias modi laborum culpa adipisci pariatur.</p>
                 <div className='d-flex gap-2'>
                     <img src={masterCard}className="payment-icons"></img>

@@ -7,7 +7,7 @@ const Checkout = () => {
   const [subtotal, setSubtotal] = useState(0);
   const [tax, setTax] = useState(0);
   const [total, setTotal] = useState(0);
-  const [isCartUpdated, setIsCartUpdated] = useState(false); // New state variable
+  const [isCartUpdated, setIsCartUpdated] = useState(false); 
 
   useEffect(() => {
     const cartItemsFromStorage = localStorage.getItem('cartItems');
@@ -30,7 +30,6 @@ const Checkout = () => {
     }, 0);
     setSubtotal(calculatedSubtotal);
 
-    // Replace with your tax calculation logic
     const calculatedTax = 0;
     setTax(calculatedTax);
 
@@ -110,7 +109,7 @@ const Checkout = () => {
                     </button>
                   </div>
                   <p className='text-bold m-0 text-red'>{itemTotal}</p>
-                  {isCartUpdated && ( // Render the "Remove" button conditionally
+                  {isCartUpdated && (
                     <button className='unset p-1' onClick={() => handleRemoveItem(_id)}>
                       Remove
                     </button>

@@ -74,7 +74,6 @@ const getItems = async () => {
         if(!selectedColor || !selectedSize){
             return
         }
-        // Create a new cart item object
         const cartItem = {
           _id: singleItem._id,
           rating: singleItem.averageRating,
@@ -83,19 +82,14 @@ const getItems = async () => {
           selectedColor,
           selectedSize,
           quantity,
-          // Add any other relevant item information here
         };
     
-        // Get the existing cart items from local storage
         const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     
-        // Add the new cart item to the existing cart items array
         existingCartItems.push(cartItem);
     
-        // Store the updated cart items back in local storage
         localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
     
-        // Reset the selected item state values
         setSelectedColor(null);
         setSelectedSize(null);
         setQuantity(1);

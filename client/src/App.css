@@ -256,6 +256,9 @@ background-color:  #FEDBE5;
   width: 100px;
   height: 100px;
 }
+.fit-c {
+  width: fit-content;
+}
 .header-second-img {
   position: absolute;
   right: 0;
